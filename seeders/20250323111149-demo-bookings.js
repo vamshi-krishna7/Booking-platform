@@ -35,7 +35,6 @@ module.exports = {
         user_id: user.id,
         event_id: randomSlot.event_id,
         status: Math.random() > 0.2 ? "confirmed" : "waiting", // 80% confirmed, 20% waiting
-        version: 0, // Default versioning
         created_at: new Date(),
         updated_at: new Date(),
       });

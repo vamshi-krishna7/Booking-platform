@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     // Fetch all events from the database
     const events = await queryInterface.sequelize.query(
-      `SELECT id, name, event_type, start_time, end_time, recurring_days, slot_duration FROM events;`,
+      `SELECT id, name, event_type, start_time, end_time, recurring_days, total_slots, waitlist_slots, slot_duration FROM events;`,
       { type: Sequelize.QueryTypes.SELECT }
     );
 
@@ -26,11 +26,12 @@ module.exports = {
 
         eventSlots.push({
           event_id: event.id,
-          total_slots: 10, // Example default capacity
-          waitlist_slots: 5, // Example waitlist capacity
+          total_slots: event.total_slots, // Example default capacity
+          waitlist_slots: event.waitlist_slots, // Example waitlist capacity
           slot_length: slotLength,
           start_time: slotStart.toTimeString().split(" ")[0], // Convert to HH:MM:SS
           end_time: nextSlot.toTimeString().split(" ")[0], // Convert to HH:MM:SS
+          remaining_slots: event.total_slots,
           created_at: new Date(),
           updated_at: new Date(),
         });
