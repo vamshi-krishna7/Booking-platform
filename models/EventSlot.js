@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
   class EventSlot extends Model {
     static associate(models) {
       // An EventSlot belongs to an Event
-      EventSlot.belongsTo(models.Event, { foreignKey: "event_id", as: "event" });
+      EventSlot.belongsTo(models.Event, {
+        foreignKey: "event_id",
+        as: "event",
+      });
     }
   }
 
@@ -39,12 +42,31 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TIME,
         allowNull: false,
       },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      },
+      remaining_slots: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      version: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
     },
     {
       sequelize,
       modelName: "EventSlot",
       tableName: "event_slots",
-      timestamps: true,
+      timestamps: false,
     }
   );
 

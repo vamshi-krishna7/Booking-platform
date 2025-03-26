@@ -27,20 +27,27 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      slotTime: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
       status: {
         type: DataTypes.ENUM("confirmed", "waiting"),
         defaultValue: "confirmed",
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       },
     },
     {
       sequelize,
       modelName: "Booking",
       tableName: "bookings",
-      timestamps: true,
+      timestamps: false,
+      underscored: true,
     }
   );
 
