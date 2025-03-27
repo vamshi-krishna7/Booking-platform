@@ -17,11 +17,11 @@ module.exports = {
           key: "id",
         },
       },
-      event_id: {
+      event_slot_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "events",
+          model: "event_slots",
           key: "id",
         },
         onUpdate: "CASCADE",
