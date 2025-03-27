@@ -4,8 +4,8 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     static associate(models) {
-      // Each Booking belongs to an Event
-      Booking.belongsTo(models.Event, { foreignKey: "event_id", as: "event" });
+      // Each Booking belongs to an Event slot
+      Booking.belongsTo(models.EventSlot, { foreignKey: "event_slot_id", as: "event_slots" });
     }
   }
 
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",     
         },
       },
-      event_id: {
+      event_slot_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "events",
+          model: "event_slots",
           key: "id",
         },
       },
