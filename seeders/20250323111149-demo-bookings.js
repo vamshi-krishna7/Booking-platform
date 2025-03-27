@@ -33,7 +33,7 @@ module.exports = {
 
       bookings.push({
         user_id: user.id,
-        event_id: randomSlot.event_id,
+        event_slot_id: randomSlot.id,
         status: Math.random() > 0.2 ? "confirmed" : "waiting", // 80% confirmed, 20% waiting
         created_at: new Date(),
         updated_at: new Date(),
